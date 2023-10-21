@@ -5,4 +5,10 @@
 
 .object-img {
   width: 20%;
+  transition: 0.2s;
+}
+
+.object-img:hover,
+.object-img:focus {
+  transform: scale(1.2);
 }

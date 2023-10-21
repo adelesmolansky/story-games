@@ -104,20 +104,20 @@ export enum FrameType {
 }
 
 export type StoryFrameData = {
-  type?: 'TODO'; // We will want different types of story frames to add visual variety
   text: string;
 };
 
 export type AnswerChoiceData = {
   answerType: AnswerType;
   [AnswerType.MULTIPLE_CHOICE]?: MultipleChoiceAnswerType;
-  [AnswerType.SELECT_MULTIPLE]?: SelectMultipleAnswerType;
-  [AnswerType.TEXT_INPUT]?: TextInputAnswerType;
+  [AnswerType.SELECT_MULTIPLE]?: SelectMultipleAnswerType; // TODO: implement
+  [AnswerType.TEXT_INPUT]?: TextInputAnswerType; // TODO: implement
   [AnswerType.DRAG_AND_DROP]?: DragAndDropAnswerType;
 };
 
 export type QuestionFrameData = {
   instructions: string;
+  instructionsPosition?: 'top' | 'bottom'; // default is top
   skill: ALL_SKILLS;
   visualsTypes: VisualsType[] | null;
   // this data must match the visualsType

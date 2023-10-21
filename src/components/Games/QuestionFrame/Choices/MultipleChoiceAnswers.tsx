@@ -1,5 +1,4 @@
 import { useSettings } from '../../../../contexts/SettingsContext';
-import { getFontSize, TextPurpose } from '../../../../util/fontSize';
 import { ProceedFuncType } from '../../Games';
 import {
   FrameType,
@@ -12,7 +11,20 @@ import {
 import { IMG_FOLDER } from '../QuestionVisuals/QuestionVisuals';
 import './Choices.css';
 
+export enum ChoiceSize {
+  SMALL = 'small', // ex: when choices are on the bottom
+  MEDIUM = 'medium',
+  LARGE = 'large', // ex: when 2 choices are in the middle
+}
+
+export const CHOICE_WIDTH = {
+  [ChoiceSize.SMALL]: 10,
+  [ChoiceSize.MEDIUM]: 20,
+  [ChoiceSize.LARGE]: 30,
+};
+
 type Props = {
+  choiceSize: ChoiceSize;
   answerData: MultipleChoiceAnswerType;
   handleAnswer: ProceedFuncType;
 };
@@ -21,8 +33,13 @@ type Props = {
  * Component for rendering the answer choices for a game question frame that has
  * multiple choices.
  */
-const MultipleChoiceAnswers = ({ answerData, handleAnswer }: Props) => {
+const MultipleChoiceAnswers = ({
+  choiceSize,
+  answerData,
+  handleAnswer,
+}: Props) => {
   const { settings } = useSettings();
+  // const { getFontSize } = useFontSize();
   const {
     optionsType,
     optionsData,
@@ -31,12 +48,37 @@ const MultipleChoiceAnswers = ({ answerData, handleAnswer }: Props) => {
     flexWrap,
   } = answerData;
 
+  const choiceWidth = CHOICE_WIDTH[choiceSize];
+
+  /**
+   * Function to handle the font size for the answer choices.
+   * Font size gets recalculated when the optionsData changes which occurs at every question.
+   * Font size is calculated based on the length of the longest answer choice
+   * and the size of the answer choice container.
+   */
+  const getFontSize = (textVisualsData: TextVisualsType[]) => {
+    // get the length of the longest answer choice
+    const maxTextLength = textVisualsData.reduce((acc, curr) => {
+      const text: string = curr.text.toString();
+      return text.length > acc ? text.length : acc;
+    }, 0);
+
+    // Calculate font size based on text length and container width
+    const newFontSizeRem = (choiceWidth / maxTextLength) * 0.7;
+    // TODO: maybe set a max font size
+    return `${newFontSizeRem}rem`;
+  };
+
   /**
    * @param choice data for the answer choice
    * @param index index of the answer choice in the array of answer choices
    * @returns the JSX element for a single answer choice
    */
-  const getChoice = (choice: SingleVisualsDataType, index: number) => {
+  const getChoice = (
+    choice: SingleVisualsDataType,
+    index: number,
+    size: ChoiceSize
+  ) => {
     let choiceData;
     let choiceValue;
     switch (optionsType) {
@@ -72,14 +114,17 @@ const MultipleChoiceAnswers = ({ answerData, handleAnswer }: Props) => {
     return (
       <button
         key={index}
-        className="choice-button"
+        className={`choice-button-${size} choice-button`}
         style={{
-          // todo: clean this up to not hard code here
+          width: `${choiceWidth}rem`, // TODO: how do we handle non-square choices?
+          height: `${choiceWidth}rem`,
           backgroundColor: settings.answerChoices.backgroundColor,
           color: settings.answerChoices.textColor,
           borderColor: settings.answerChoices.textColor,
-          // TODO: revise this function to handle longer/shorter text
-          fontSize: getFontSize(settings.fontSize, TextPurpose.ANSWER_CHOICES),
+          fontSize:
+            optionsType === VisualsType.TEXT
+              ? getFontSize(optionsData as TextVisualsType[])
+              : '',
           // todo: add more styling based on other data
         }}
         onClick={() =>
@@ -92,7 +137,6 @@ const MultipleChoiceAnswers = ({ answerData, handleAnswer }: Props) => {
   };
 
   return (
-    // TODO:
     <div
       className="choice-container"
       style={{
@@ -100,8 +144,9 @@ const MultipleChoiceAnswers = ({ answerData, handleAnswer }: Props) => {
         flexWrap: flexWrap || 'wrap',
       }}
     >
-      {optionsData.map((choice, index) => getChoice(choice, index))}
+      {optionsData.map((choice, index) => getChoice(choice, index, choiceSize))}
     </div>
   );
 };
+
 export default MultipleChoiceAnswers;

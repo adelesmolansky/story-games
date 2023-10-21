@@ -5,7 +5,9 @@ import {
   MultipleChoiceAnswerType,
   QuestionFrameData,
 } from '../util/types';
-import MultipleChoiceAnswers from './Choices/MultipleChoiceAnswers';
+import MultipleChoiceAnswers, {
+  ChoiceSize,
+} from './Choices/MultipleChoiceAnswers';
 import QuestionVisuals from './QuestionVisuals/QuestionVisuals';
 import './QuestionFrame.css';
 import { getFontSize, TextPurpose } from '../../../util/fontSize';
@@ -23,22 +25,36 @@ const QuestionFrame = ({
   const { visualsTypes, visualsData } = questionFrameData;
   const { answerType } = questionFrameData.answerData;
 
+  // Handle the instructions
+  const instructionsPosition = questionFrameData.instructionsPosition || 'top';
+  const instructionsContainer = (
+    <div className="instructions-container">
+      <h1
+        className="instructions-text"
+        style={{
+          fontSize: getFontSize(
+            settings.fontSize,
+            TextPurpose.QUESTION_INSTRUCTIONS
+          ),
+        }}
+      >
+        {questionFrameData.instructions}
+      </h1>
+    </div>
+  );
+
+  // Handle the visuals
+  const gameHasVisuals = visualsTypes && visualsData;
+
   return (
-    <div className="question-frame-container">
-      <div className="instructions-container">
-        <h1
-          className="instructions-text"
-          style={{
-            fontSize: getFontSize(
-              settings.fontSize,
-              TextPurpose.QUESTION_INSTRUCTIONS
-            ),
-          }}
-        >
-          {questionFrameData.instructions}
-        </h1>
-      </div>
-      {visualsTypes && (
+    <div
+      className="question-frame-container"
+      style={{
+        justifyContent: gameHasVisuals ? 'space-between' : 'flex-start',
+      }}
+    >
+      {instructionsPosition === 'top' && instructionsContainer}
+      {gameHasVisuals && (
         <div className="visuals-container">
           {visualsTypes.map((type, idx) => (
             <QuestionVisuals
@@ -49,8 +65,12 @@ const QuestionFrame = ({
           ))}
         </div>
       )}
+      {instructionsPosition === 'bottom' && instructionsContainer}
 
-      <div className="choices-container">
+      <div
+        className="choices-container"
+        style={{ marginTop: gameHasVisuals ? '' : '8%' }}
+      >
         {answerType === AnswerType.MULTIPLE_CHOICE && (
           <MultipleChoiceAnswers
             handleAnswer={proceedToNextFrame}
@@ -59,6 +79,7 @@ const QuestionFrame = ({
                 AnswerType.MULTIPLE_CHOICE
               ] as MultipleChoiceAnswerType
             }
+            choiceSize={gameHasVisuals ? ChoiceSize.SMALL : ChoiceSize.LARGE}
           />
         )}
         {/* TODO: Add the other answer type components */}

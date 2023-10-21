@@ -9,7 +9,7 @@ export enum ADDITION_SKILLS {
   ADD_OBJECTS = 'add objects', // DONE
   ADD_NUMBERS = 'add numbers', // DONE
   VISUAL_WORD_PROBLEMS = 'visual word problems',
-  NUMERIC_WORD_PROBLEMS = 'numeric word problems',
+  NUMERIC_WORD_PROBLEMS = 'numeric word problems', // DONE
 }
 
 export enum SUBTRACTION_SKILLS {
@@ -23,9 +23,14 @@ export enum COMPARISON_SKILLS {
   COMPARE_OBJECTS = 'compare objects', // DONE
   COMPARE_NUMBERS = 'compare numbers', // DONE
   VISUAL_WORD_PROBLEMS = 'visual word problems',
-  NUMERIC_WORD_PROBLEMS = 'numeric word problems',
+  NUMERIC_WORD_PROBLEMS = 'numeric word problems', // DONE
   COMPARISON_SIGNS = 'comparison signs',
 }
+
+// TODO: add these skills!
+export enum LOGIC_SKILLS {}
+export enum GEOMETRY_SKILLS {}
+export enum CLASSIFICATION_SKILLS {}
 
 export type ALL_SKILLS =
   | COUNTING_SKILLS

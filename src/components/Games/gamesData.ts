@@ -142,6 +142,7 @@ const MIXED_STORY: GameDataType = {
         text: 'Lucy wants to know the total number of apples.',
       },
     },
+
     {
       type: FrameType.Question,
       [FrameType.Question]: {
@@ -176,7 +177,7 @@ const MIXED_STORY: GameDataType = {
     {
       type: FrameType.Question,
       [FrameType.Question]: {
-        instructions: 'Which bag has more apples?',
+        instructions: 'Which group has more apples?',
         skill: COMPARISON_SKILLS.COMPARE_OBJECTS,
         visualsTypes: null,
         visualsData: null,
@@ -314,6 +315,54 @@ const MIXED_STORY: GameDataType = {
             correctAnswerIdx: 1,
             optionsType: VisualsType.TEXT,
             optionsData: [{ text: 7 }, { text: 4 }],
+          },
+        },
+      },
+    },
+    {
+      type: FrameType.Story,
+      [FrameType.Story]: {
+        text: 'Now they have apples and oranges in their shopping cart.',
+      },
+    },
+    {
+      type: FrameType.Question,
+      [FrameType.Question]: {
+        instructions: 'How many items are there in total?',
+        instructionsPosition: 'bottom',
+        skill: ADDITION_SKILLS.NUMERIC_WORD_PROBLEMS,
+        visualsTypes: [VisualsType.TEXT, VisualsType.TEXT],
+        visualsData: [
+          { text: 'They have 7 apples.' },
+          { text: 'And 11 oranges' },
+        ],
+        answerData: {
+          answerType: AnswerType.MULTIPLE_CHOICE,
+          [AnswerType.MULTIPLE_CHOICE]: {
+            correctAnswerIdx: 0,
+            optionsType: VisualsType.TEXT,
+            optionsData: [{ text: 18 }, { text: 11 }, { text: 15 }],
+          },
+        },
+      },
+    },
+    {
+      type: FrameType.Question,
+      [FrameType.Question]: {
+        instructions: 'Do they have more apples or oranges?',
+        instructionsPosition: 'bottom',
+        skill: COMPARISON_SKILLS.COMPARE_NUMBERS,
+        visualsTypes: [VisualsType.TEXT, VisualsType.TEXT],
+        visualsData: [
+          { text: 'They have 7 apples.' },
+          { text: 'And 11 oranges' },
+        ],
+        answerData: {
+          answerType: AnswerType.MULTIPLE_CHOICE,
+          [AnswerType.MULTIPLE_CHOICE]: {
+            correctAnswerIdx: 1,
+            optionsType: VisualsType.TEXT,
+            optionsData: [{ text: 'apples' }, { text: 'oranges' }],
           },
         },
       },
