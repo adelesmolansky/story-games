@@ -69,7 +69,7 @@ const QuestionFrame = ({
 
       <div
         className="choices-container"
-        style={{ marginTop: gameHasVisuals ? '' : '8%' }}
+        style={{ marginTop: gameHasVisuals ? 'auto' : '8%' }}
       >
         {answerType === AnswerType.MULTIPLE_CHOICE && (
           <MultipleChoiceAnswers

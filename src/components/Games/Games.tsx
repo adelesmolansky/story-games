@@ -52,7 +52,8 @@ const StoryGame: React.FC<StoryGameProps> = ({ gameData }) => {
         }, 2000);
       }
     } else {
-      // Game ended, maybe redirect to a game-over screen or back to the main menu.
+      // Game ended
+      // TODO:  redirect to a game-over screen or back to the main menu.
     }
   };
 
