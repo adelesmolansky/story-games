@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import StoryGame from './components/Games/Games';
+import { GAMES_DATA } from './components/Games/gamesData';
+import SelectGame from './components/SelectGame/SelectGame';
+import { SettingsProvider } from './contexts/SettingsContext';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SettingsProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SelectGame />} />
+          {Object.keys(GAMES_DATA).map((gameKey) => (
+            <Route
+              key={gameKey}
+              path={`/${gameKey}`}
+              element={<StoryGame gameData={GAMES_DATA[gameKey]} />}
+            />
+          ))}
+        </Routes>
+      </BrowserRouter>
+    </SettingsProvider>
   );
-}
+};
 
 export default App;

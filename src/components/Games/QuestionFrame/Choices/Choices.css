@@ -1,0 +1,14 @@
+.choice-container {
+  width: 100%;
+  max-width: 80rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.choice-button {
+  width: 10rem;
+  height: 10rem;
+  font-size: 5rem;
+}

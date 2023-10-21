@@ -1,0 +1,30 @@
+.story-frame-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This will push the main content and the button apart */
+  align-items: center;
+  height: 100%; /* Full height of the parent */
+}
+
+.story-text {
+  flex-grow: 1; /* This allows it to take up as much space as it can */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Ensures the text within the <p> is centered too */
+}
+
+.button-container {
+  flex-grow: 0; /* Does not allow this container to grow, keeping it at the bottom */
+  margin-bottom: 5rem;
+}
+
+.continue-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 15rem;
+  height: 5rem;
+}

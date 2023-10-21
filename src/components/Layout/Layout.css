@@ -1,0 +1,4 @@
+.layout-container {
+  /* this ensures that the app content will always span the height of the page */
+  height: 100vh;
+}

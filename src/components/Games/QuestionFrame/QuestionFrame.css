@@ -1,0 +1,13 @@
+.question-frame-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.instructions-container {
+  width: 100%;
+}
+
+.instructions-text {
+  text-align: center;
+}
