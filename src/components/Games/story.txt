@@ -1,0 +1,33 @@
+PARK STORY: Counting objects 
+SKILLS: objects can be linear or scattered or separated in two groups for adding objects
+Alex walks into a park.
+Alex notices some birds on a tree.
+The birds chirp.
+QUESTION: How many birds are there?
+Alex also notices people flying kites. 
+The kites are very colorful.
+QUESTION: How many kites are there?
+Walking further, Alex sees a pond in the park.
+There are ducks swimming in the pond.
+QUESTION: How many ducks are there?
+Walking further, Alex finds a snack stand selling pretzels.
+The pretzels smell delicious.
+QUESTION: How many pretzels are there?
+Alex gets a pretzel and is very happy.
+After eating the pretzel, Alex wants to play in the playground. 
+There are many other children in the playground. 
+QUESTION: How many children are there?
+The playground has swings. 
+QUESTION: How many swings are there?
+Alex chooses an empty swing.
+Alex swings in a swing. 
+Alex notices that someone is celebrating their birthday. 
+There is a large cake with candles
+QUESTION: How many candles are there?
+There are also balloons. 
+QUESTION: How many balloons are there?
+Now Alex is tired and wants to go home. 
+He leaves the park and walks home. 
+
+PARK STORY: adding
+SKILLS: Adding objects, adding digits
