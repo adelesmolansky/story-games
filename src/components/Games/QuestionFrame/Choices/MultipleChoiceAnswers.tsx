@@ -4,10 +4,12 @@ import { ProceedFuncType } from '../../Games';
 import {
   FrameType,
   MultipleChoiceAnswerType,
+  ObjectVisualsType,
   SingleVisualsDataType,
   TextVisualsType,
   VisualsType,
 } from '../../util/types';
+import { IMG_FOLDER } from '../QuestionVisuals/QuestionVisuals';
 import './Choices.css';
 
 type Props = {
@@ -42,6 +44,27 @@ const MultipleChoiceAnswers = ({ answerData, handleAnswer }: Props) => {
         choiceData = choice as TextVisualsType;
         choiceValue = choiceData.text;
         break;
+
+      case VisualsType.OBJECTS:
+        choiceData = choice as ObjectVisualsType;
+        // TODO: Refactor this to not copy and paste code from QuestionVisuals.tsx
+        const images = Array.isArray(choiceData.imgs)
+          ? choiceData.imgs
+          : new Array(choiceData.num).fill(choiceData.imgs);
+        const names = Array.isArray(choiceData.names)
+          ? choiceData.names
+          : new Array(choiceData.num).fill(choiceData.names);
+
+        choiceValue = images.map((img, index) => (
+          <img
+            key={index}
+            src={`${IMG_FOLDER}${img}`}
+            alt={names[index]}
+            className="object-img"
+          />
+        ));
+        break;
+
       default:
       //  todo: add more visuals types
     }
@@ -54,6 +77,7 @@ const MultipleChoiceAnswers = ({ answerData, handleAnswer }: Props) => {
           // todo: clean this up to not hard code here
           backgroundColor: settings.answerChoices.backgroundColor,
           color: settings.answerChoices.textColor,
+          borderColor: settings.answerChoices.textColor,
           // TODO: revise this function to handle longer/shorter text
           fontSize: getFontSize(settings.fontSize, TextPurpose.ANSWER_CHOICES),
           // todo: add more styling based on other data

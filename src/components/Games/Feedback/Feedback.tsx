@@ -1,4 +1,5 @@
 import Layout from '../../Layout/Layout';
+import './Feedback.css';
 
 type props = {
   correct: boolean;
@@ -6,7 +7,9 @@ type props = {
 
 const Feedback = ({ correct }: props) => {
   const heading = correct ? 'Correct!' : 'Incorrect! Try again.';
-  const img = correct ? '/correct_icon.png' : '/incorrect_icon.png';
+  const img = correct
+    ? '/imgs/feedback/checkmark.png'
+    : '/imgs/feedback//xmark.png';
 
   return (
     <Layout>

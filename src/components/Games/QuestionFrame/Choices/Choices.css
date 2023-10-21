@@ -1,3 +1,6 @@
+/* TODO: if answer choices are in the middle of the screen then the styling
+is different */
+
 .choice-container {
   width: 100%;
   max-width: 80rem;
@@ -11,4 +14,6 @@
   width: 10rem;
   height: 10rem;
   font-size: 5rem;
+  border-radius: 1rem;
+  border: solid 0.3rem;
 }

@@ -38,17 +38,19 @@ const QuestionFrame = ({
           {questionFrameData.instructions}
         </h1>
       </div>
-      <div className="visualsContainer">
-        {visualsTypes.map((type, idx) => (
-          <QuestionVisuals
-            visualsType={type}
-            visualsData={visualsData[idx]}
-            key={idx}
-          />
-        ))}
-      </div>
+      {visualsTypes && (
+        <div className="visuals-container">
+          {visualsTypes.map((type, idx) => (
+            <QuestionVisuals
+              visualsType={type}
+              visualsData={visualsData![idx]}
+              key={idx}
+            />
+          ))}
+        </div>
+      )}
 
-      <div className="choicesContainer">
+      <div className="choices-container">
         {answerType === AnswerType.MULTIPLE_CHOICE && (
           <MultipleChoiceAnswers
             handleAnswer={proceedToNextFrame}

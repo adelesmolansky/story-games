@@ -1,3 +1,8 @@
-img {
-  width: 20rem;
+.objects {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.object-img {
+  width: 20%;
 }

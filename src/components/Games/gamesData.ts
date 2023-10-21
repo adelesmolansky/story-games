@@ -90,15 +90,6 @@ const COUNTING_PARK_STORY: GameDataType = {
         },
       },
     },
-    {
-      type: FrameType.Story,
-      [FrameType.Story]: {
-        text: 'Alex buys a pretzel and eats it.',
-      },
-    },
-    {
-      type: FrameType.Story,
-    },
   ],
 };
 
