@@ -1,3 +1,5 @@
+import { ALL_SKILLS } from './skills';
+
 /**
  * Visuals type can appear as the main game visuals or within answer choices
  */
@@ -116,9 +118,10 @@ export type AnswerChoiceData = {
 
 export type QuestionFrameData = {
   instructions: string;
-  visualsTypes: VisualsType[];
+  skill: ALL_SKILLS;
+  visualsTypes: VisualsType[] | null;
   // this data must match the visualsType
-  visualsData: SingleVisualsDataType[];
+  visualsData: SingleVisualsDataType[] | null;
   answerData: AnswerChoiceData;
 };
 
@@ -127,6 +130,7 @@ export type GameDataType = {
   title: string;
   coverImage: string;
   description: string;
+  skills: ALL_SKILLS[];
   frames: {
     type: FrameType;
     [FrameType.Story]?: StoryFrameData;

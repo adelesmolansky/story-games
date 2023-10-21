@@ -1,5 +1,5 @@
-PARK STORY: Counting objects 
-SKILLS: objects can be linear or scattered or separated in two groups for adding objects
+// ******************   STORY    ****************** \\
+PARK STORY: Counting 
 Alex walks into a park.
 Alex notices some birds on a tree.
 The birds chirp.
@@ -29,5 +29,92 @@ QUESTION: How many balloons are there?
 Now Alex is tired and wants to go home. 
 He leaves the park and walks home. 
 
-PARK STORY: adding
-SKILLS: Adding objects, adding digits
+
+// ******************   STORY    ****************** \\
+PARK STORY: addition & comparision 
+Lucy walks into a park.
+Lucy sees two trees with birds.
+The birds chirp.
+One tree has 4 birds.
+The other tree has 3 birds.
+QUESTION: How many birds are there in total? (add objects, addition word problems)
+QUESTION: Which tree has more birds? (compare objects and comparison word problems)
+
+Walking further, Lucy spots two groups of ducks in the pond.
+There are ducks swimming happily.
+The first group has 4 ducks.
+The second group has 3 ducks.
+QUESTION: How many ducks are there in total? (add objects, addition word problems)
+QUESTION: What group has more ducks? (compare objects and comparison word problems)
+
+Lucy sees her friend named Stacey.
+Stacy suggests that they fly kites together.
+Lucy has 2 kites to choose from. 
+And Stacey has 4 kites to choose from.
+QUESTION: How many kites do they have in total? (add objects, addition word problems)
+QUESTION: Who has more kites? (compare objects and comparison word problems)
+
+They choose kites to play with.
+First they fly Lucy's kite for 5 minutes.
+Then they fly Stacey's kite for 7 minutes. 
+How much time did they spend flying kites?
+QUESTION: What is the sum?
+
+Now Lucy and Stacey want a snack.
+Lucy has 4 apple slices.
+And Stacey has 6 apple slices. 
+QUESTION: How many apple slices do they have in total?
+
+
+// ******************   STORY    ****************** \\
+PARK STORY: addition, subtraction, comparision with digits (and objects)
+Lucy walks into a park.
+Lucy sees two trees with birds.
+The birds chirp.
+One tree has 12 birds.
+The other tree has 14 birds.
+Lucy wants to know the total number of birds. (addition)
+Lucy wants to know which tree has more birds.
+Lucy wants to know the difference in the number of birds. (subtraction)
+
+QUESTION: How many birds are there in total? (addition)
+QUESTION: Which tree has more birds? (comparison)
+QUESTION: What is the difference? (subtraction)
+
+
+// ******************   STORY    ****************** \\
+PARK STORY: addition, subtraction, comparision with digits (and objects)
+Lucy and her mom are planning to cook dinner. 
+They go grocery shopping to prepare for dinner.
+First Lucy needs to get apples.
+Lucy puts 4 apples in one bag. 
+And 3 apples in another bag. 
+
+QUESTION: How many apples are there in total? (addition)
+QUESTION: Which bag has more apples? (comparision)
+QUESTION: How many more apples are in the first bag? (subtraction)
+
+// ******************   STORY    ****************** \\
+PARK STORY: addition, subtraction, comparision with digits (and objects)
+Lucy and her mom are planning to cook dinner. 
+They go grocery shopping to prepare for dinner.
+First Lucy's mom gets apples.
+She puts 4 apples in one bag. 
+And 3 apples in another bag. 
+
+Lucy wants to know the total number of apples. (addition)
+Lucy wants to know which bag has more apples. (comparison)
+Lucy wants to know the difference in the number of apples. (subtraction)
+
+QUESTION: What is the sum? (addition)
+QUESTION: Which bag has more apples? (comparision)
+QUESTION: What is the difference? (subtraction)
+
+Now Lucy goes to get oranges.
+Lucy puts 7 oranges in one bag. 
+And 4 oranges in another bag.
+
+QUESTION: How many oranges are there in total? (addition)
+QUESTION: What is the difference? (subtraction)
+QUESTION: Which number is larger? (comparison)
+QUESTION: Which number is smaller? (comparison)
