@@ -1,14 +1,17 @@
-.objects {
-  display: flex;
-  justify-content: space-evenly;
+.math-sign {
+  font-size: 15rem;
+  margin: 0 5%;
 }
 
-.object-img {
-  width: 20%;
-  transition: 0.2s;
+/* Handle smaller screen sizes */
+@media only screen and (max-width: 68rem) {
+  .math-sign {
+    font-size: 10rem;
+  }
 }
 
-.object-img:hover,
-.object-img:focus {
-  transform: scale(1.2);
+@media only screen and (max-width: 45rem) {
+  .math-sign {
+    font-size: 8rem;
+  }
 }

@@ -1,4 +1,5 @@
 import { useSettings } from '../../../../contexts/SettingsContext';
+import { getMaxTextVisualsLength } from '../../../../util/fontSize';
 import { ProceedFuncType } from '../../Games';
 import {
   FrameType,
@@ -8,7 +9,7 @@ import {
   TextVisualsType,
   VisualsType,
 } from '../../util/types';
-import { IMG_FOLDER } from '../QuestionVisuals/QuestionVisuals';
+import Objects from '../Visuals/Objects';
 import './Choices.css';
 
 export enum ChoiceSize {
@@ -17,8 +18,8 @@ export enum ChoiceSize {
   LARGE = 'large', // ex: when 2 choices are in the middle
 }
 
-export const CHOICE_WIDTH = {
-  [ChoiceSize.SMALL]: 10,
+const CHOICE_HEIGHT = {
+  [ChoiceSize.SMALL]: 13,
   [ChoiceSize.MEDIUM]: 20,
   [ChoiceSize.LARGE]: 30,
 };
@@ -48,92 +49,91 @@ const MultipleChoiceAnswers = ({
     flexWrap,
   } = answerData;
 
-  const choiceWidth = CHOICE_WIDTH[choiceSize];
-
-  /**
-   * Function to handle the font size for the answer choices.
-   * Font size gets recalculated when the optionsData changes which occurs at every question.
-   * Font size is calculated based on the length of the longest answer choice
-   * and the size of the answer choice container.
-   */
-  const getFontSize = (textVisualsData: TextVisualsType[]) => {
-    // get the length of the longest answer choice
-    const maxTextLength = textVisualsData.reduce((acc, curr) => {
-      const text: string = curr.text.toString();
-      return text.length > acc ? text.length : acc;
-    }, 0);
-
-    // Calculate font size based on text length and container width
-    const newFontSizeRem = (choiceWidth / maxTextLength) * 0.7;
-    // TODO: maybe set a max font size
-    return `${newFontSizeRem}rem`;
+  // Define contants general to all answer choices
+  const choiceHeight = CHOICE_HEIGHT[choiceSize];
+  const buttonClassNames = `choice-button-${choiceSize} choice-button`;
+  const generalButtonStyles = {
+    height: `${choiceHeight}rem`,
+    backgroundColor: settings.answerChoices.backgroundColor,
+    color: settings.answerChoices.textColor,
+    borderColor: settings.answerChoices.textColor,
+    // todo: add more styling based on other data
   };
+  const handleClick = (index: number) =>
+    handleAnswer(FrameType.Question, correctAnswerIdx === index);
 
   /**
    * @param choice data for the answer choice
    * @param index index of the answer choice in the array of answer choices
    * @returns the JSX element for a single answer choice
    */
-  const getChoice = (
+  const getOneAnswerChoice = (
     choice: SingleVisualsDataType,
     index: number,
     size: ChoiceSize
-  ) => {
-    let choiceData;
-    let choiceValue;
+  ): JSX.Element => {
     switch (optionsType) {
       case VisualsType.TEXT:
-        choiceData = choice as TextVisualsType;
-        choiceValue = choiceData.text;
-        break;
+        const allTextData = optionsData as TextVisualsType[];
+        const textData = choice as TextVisualsType;
+        const textValue = textData.text;
+
+        // get the length of the longest answer choice
+        const maxTextLength = getMaxTextVisualsLength(allTextData);
+
+        // Calculate font size based on text length and container width
+        let fontSizeNum = choiceHeight / 1.3; // this is the max font size
+        if (maxTextLength === 1) fontSizeNum = fontSizeNum;
+        else if (maxTextLength === 2) fontSizeNum = fontSizeNum * 0.8;
+        else if (maxTextLength === 3) fontSizeNum = fontSizeNum * 0.6;
+        else if (maxTextLength === 4) fontSizeNum = fontSizeNum * 0.4;
+        else if (maxTextLength < 8) fontSizeNum = fontSizeNum * 0.4;
+        else if (maxTextLength < 12) fontSizeNum = fontSizeNum * 0.4;
+        else fontSizeNum = fontSizeNum * 0.3;
+
+        const fontSize = `${fontSizeNum}rem`;
+        // TODO: maybe set a max font size
+
+        return (
+          <button
+            key={index}
+            className={buttonClassNames}
+            style={{
+              ...generalButtonStyles,
+              width: `${
+                // TODO: figure out what values to use here
+                maxTextLength > 5 ? choiceHeight * 1.5 : choiceHeight
+              }rem`,
+              fontSize,
+            }}
+            onClick={() => handleClick(index)}
+          >
+            {textValue}
+          </button>
+        );
 
       case VisualsType.OBJECTS:
-        choiceData = choice as ObjectVisualsType;
-        // TODO: Refactor this to not copy and paste code from QuestionVisuals.tsx
-        const images = Array.isArray(choiceData.imgs)
-          ? choiceData.imgs
-          : new Array(choiceData.num).fill(choiceData.imgs);
-        const names = Array.isArray(choiceData.names)
-          ? choiceData.names
-          : new Array(choiceData.num).fill(choiceData.names);
+        // TODO: make sure that the objects will always be the same size
+        const allObjectData = optionsData as ObjectVisualsType[];
+        const objectData = choice as ObjectVisualsType;
 
-        choiceValue = images.map((img, index) => (
-          <img
+        return (
+          <button
             key={index}
-            src={`${IMG_FOLDER}${img}`}
-            alt={names[index]}
-            className="object-img"
-          />
-        ));
-        break;
+            className={buttonClassNames}
+            style={{
+              ...generalButtonStyles,
+              width: `${choiceHeight}rem`,
+            }}
+            onClick={() => handleClick(index)}
+          >
+            <Objects objectVisualsData={objectData} forAnswerChoices />
+          </button>
+        );
 
       default:
-      //  todo: add more visuals types
+        return <div>NOT IMPLEMENTED</div>;
     }
-
-    return (
-      <button
-        key={index}
-        className={`choice-button-${size} choice-button`}
-        style={{
-          width: `${choiceWidth}rem`, // TODO: how do we handle non-square choices?
-          height: `${choiceWidth}rem`,
-          backgroundColor: settings.answerChoices.backgroundColor,
-          color: settings.answerChoices.textColor,
-          borderColor: settings.answerChoices.textColor,
-          fontSize:
-            optionsType === VisualsType.TEXT
-              ? getFontSize(optionsData as TextVisualsType[])
-              : '',
-          // todo: add more styling based on other data
-        }}
-        onClick={() =>
-          handleAnswer(FrameType.Question, correctAnswerIdx === index)
-        }
-      >
-        {choiceValue}
-      </button>
-    );
   };
 
   return (
@@ -144,7 +144,9 @@ const MultipleChoiceAnswers = ({
         flexWrap: flexWrap || 'wrap',
       }}
     >
-      {optionsData.map((choice, index) => getChoice(choice, index, choiceSize))}
+      {optionsData.map((choice, index) =>
+        getOneAnswerChoice(choice, index, choiceSize)
+      )}
     </div>
   );
 };

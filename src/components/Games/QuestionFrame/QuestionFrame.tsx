@@ -60,6 +60,8 @@ const QuestionFrame = ({
             <QuestionVisuals
               visualsType={type}
               visualsData={visualsData![idx]}
+              allVisualsData={visualsData!}
+              visualsTypes={visualsTypes}
               key={idx}
             />
           ))}

@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  height: 100%; /* Full height of the parent */
 }
 
 .feedback-screen > h1 {
@@ -10,7 +11,13 @@
   margin-bottom: 1.25rem;
 }
 
-.feedback-screen > img {
-  width: 60%;
+.feedback-img-container {
+  height: 100%;
+  display: flex;
+}
+
+.feedback-img {
+  width: 90%;
   height: auto;
+  margin: auto;
 }

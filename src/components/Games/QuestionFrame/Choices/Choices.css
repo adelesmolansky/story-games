@@ -14,7 +14,7 @@
 
 .choice-button:hover,
 .choice-button:focus {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .choice-button-small {

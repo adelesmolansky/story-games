@@ -1,13 +1,14 @@
 // Define base font sizes in rem based on what text is used for
 
+import { TextVisualsType } from '../components/Games/util/types';
 import { Scale } from '../contexts/SettingsContext';
 
 export enum TextPurpose {
-  STORY_MAIN = 'STORY_MAIN',
-  STORY_SUBTEXT = 'STORY_SUBTEXT',
-  QUESTION_INSTRUCTIONS = 'QUESTION_INSTRUCTIONS',
-  CONTINUE_BUTTON = 'CONTINUE_BUTTON',
-  ANSWER_CHOICES = 'ANSWER_CHOICES',
+  STORY_MAIN,
+  STORY_SUBTEXT,
+  QUESTION_INSTRUCTIONS,
+  CONTINUE_BUTTON,
+  ANSWER_CHOICES,
 }
 const BASE_FONT_SIZE: { [key in TextPurpose]: number } = {
   [TextPurpose.STORY_MAIN]: 5,
@@ -27,3 +28,17 @@ export const getFontSize = (scale: Scale, textPurpose: TextPurpose) => {
       : fontSizeBaseNumber * 1.3
   }rem`;
 };
+
+/**
+ * Calculates the maximum length of the text strings in the given array of
+ * the visuals [TextVisualsType]
+ */
+export const getMaxTextVisualsLength = (textStrs: TextVisualsType[]) => {
+  const maxTextLength = textStrs.reduce((acc, curr) => {
+    const text: string = curr.text?.toString();
+    return text.length > acc ? text.length : acc;
+  }, 0);
+  return maxTextLength;
+};
+
+export const getTextVisualsFontSize = (text: string, maxSize: number) => {};

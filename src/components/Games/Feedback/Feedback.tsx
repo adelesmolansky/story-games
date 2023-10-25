@@ -15,7 +15,9 @@ const Feedback = ({ correct }: props) => {
     <Layout>
       <div className="feedback-screen">
         <h1>{heading}</h1>
-        <img src={img} alt={heading} />
+        <div className="feedback-img-container">
+          <img src={img} alt={heading} className="feedback-img" />
+        </div>
       </div>
     </Layout>
   );

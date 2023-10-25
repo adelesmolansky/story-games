@@ -1,0 +1,16 @@
+.objects-container {
+  display: flex;
+  justify-content: space-evenly;
+  /* this is the default for object grids */
+  flex-wrap: wrap;
+}
+
+.object-img {
+  width: 20%;
+  transition: 0.2s;
+}
+
+.object-hover:hover,
+.object-hover:focus {
+  transform: scale(1.2);
+}
