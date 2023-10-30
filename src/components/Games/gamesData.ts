@@ -370,7 +370,7 @@ const MIXED_STORY: GameDataType = {
   ],
 };
 
-export const GAMES_DATA: { [key: string]: GameDataType } = {
-  countingPark: COUNTING_PARK_STORY,
-  additionShopping: MIXED_STORY,
-};
+// export const GAMES_DATA: { [key: string]: GameDataType } = {
+//   countingPark: COUNTING_PARK_STORY,
+//   additionShopping: MIXED_STORY,
+// };

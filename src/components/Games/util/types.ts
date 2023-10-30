@@ -125,15 +125,17 @@ export type QuestionFrameData = {
   answerData: AnswerChoiceData;
 };
 
+export type FrameData = {
+  type: FrameType;
+  [FrameType.Story]?: StoryFrameData;
+  [FrameType.Question]?: QuestionFrameData;
+};
+
 // Type to organize the game data
 export type GameDataType = {
   title: string;
   coverImage: string;
   description: string;
   skills: ALL_SKILLS[];
-  frames: {
-    type: FrameType;
-    [FrameType.Story]?: StoryFrameData;
-    [FrameType.Question]?: QuestionFrameData;
-  }[];
+  frames: FrameData[];
 };

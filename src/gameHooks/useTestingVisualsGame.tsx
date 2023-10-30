@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
   ADDITION_SKILLS,
-  ALL_SKILLS,
   COMPARISON_SKILLS,
   SUBTRACTION_SKILLS,
 } from '../components/Games/util/skills';
@@ -11,43 +10,31 @@ import {
   GameDataType,
   VisualsType,
 } from '../components/Games/util/types';
+import { EMPTY_GAME_DATA } from './util';
 
-// NOTE: some states should be global variables that can be changed by the user
-// in a textbox or dropdown menu (based on how we implement the customization)
-
-const EMPTY_GAME_DATA: GameDataType = {
-  title: '',
-  coverImage: '',
-  description: '',
+export const TESTING_VISUALS_DATA = {
+  title: 'Testing visuals game',
+  coverImage: '/imgs/coverImgs/testing.png',
+  description: 'Testing visuals.',
   skills: [],
-  frames: [],
+  frames: [], // this gets filled in later
 };
-const COVER_IMG_FOLDER = '/imgs/coverImgs';
-export const TESTING_GAME_KEY = 'testingGame';
 
 /**
- * Hook for the "Testing Game"
+ * Hook for the "Testing Visuals Game"
  * This game is used to test all the different question visuals.
- * I will also use this to test the customization features.
  */
-export const useTestingGame = () => {
+export const useTestingVisualsGame = () => {
   // Define states with the default values for the game
-  const [title, setTitle] = useState('Testing Game');
-  const [coverImage, setCoverImage] = useState(
-    `${COVER_IMG_FOLDER}/testing.png`
-  );
-  const [description, setDescription] = useState(
-    'This game is used to test all the different question visuals'
-  );
-  const [skills, setSkills] = useState<ALL_SKILLS[]>([]);
+
   const [gameData, setGameData] = useState<GameDataType>(EMPTY_GAME_DATA);
 
   const getGameData = (): GameDataType => {
     return {
-      title,
-      coverImage,
-      description,
-      skills,
+      title: TESTING_VISUALS_DATA.title,
+      coverImage: TESTING_VISUALS_DATA.coverImage,
+      description: TESTING_VISUALS_DATA.description,
+      skills: TESTING_VISUALS_DATA.skills,
       frames: [
         {
           type: FrameType.Story,
@@ -424,5 +411,5 @@ export const useTestingGame = () => {
   // the game data based on users preferences.
   useEffect(() => setGameData(getGameData()), []);
 
-  return { testingGameData: gameData };
+  return { gameData };
 };

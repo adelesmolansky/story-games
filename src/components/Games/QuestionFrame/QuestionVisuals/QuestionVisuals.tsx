@@ -53,8 +53,10 @@ const QuestionVisuals = ({
       else fontSizeNum = fontSizeNum * 0.25;
 
       const fontSize = `${fontSizeNum}rem`;
+      const lineHeightNum = fontSizeNum < 8 ? fontSizeNum * 1.3 : 8;
+      const lineHeight = `${lineHeightNum}rem`;
 
-      return <p style={{ fontSize }}>{textVisualsData.text}</p>;
+      return <p style={{ fontSize, lineHeight }}>{textVisualsData.text}</p>;
 
     case VisualsType.MATH_SIGN:
       const mathSignVisualsData = visualsData as MathSignVisualsType;
