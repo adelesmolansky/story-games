@@ -118,7 +118,7 @@ export type AnswerChoiceData = {
 export type QuestionFrameData = {
   instructions: string;
   instructionsPosition?: 'top' | 'bottom'; // default is top
-  skill: ALL_SKILLS;
+  skill: ALL_SKILLS | ALL_SKILLS[];
   visualsTypes: VisualsType[] | null;
   // this data must match the visualsType
   visualsData: SingleVisualsDataType[] | null;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { ALL_SKILLS } from '../components/Games/util/skills';
-import { GameDataType } from '../components/Games/util/types';
-import { COVER_IMG_FOLDER, EMPTY_GAME_DATA } from './util';
+import { ALL_SKILLS } from '../../components/Games/util/skills';
+import { GameDataType } from '../../components/Games/util/types';
+import { COVER_IMG_FOLDER, EMPTY_GAME_DATA } from '../util';
 
 // NOTE: some states should be global variables that can be changed by the user
 // in a textbox or dropdown menu (based on how we implement the customization)
