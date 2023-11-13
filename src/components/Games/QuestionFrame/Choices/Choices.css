@@ -1,6 +1,6 @@
 .choice-container {
   width: 100%;
-  max-width: 80rem;
+  max-width: 8000%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -18,11 +18,18 @@
 }
 
 .choice-button-small {
-  border-radius: 1rem;
-  border: solid 0.3rem;
+  border-radius: 100%;
+  border: solid 30%;
+	min-width: 625%;
+  min-height: 1.875;
+display: inline;
+
 }
 
 .choice-button-large {
-  border-radius: 1.5rem;
-  border: solid 0.5rem;
+  border-radius: 150%;
+  border: solid 50%;
+min-width:625%;
+  min-height: 1.875;
+display: inline;
 }

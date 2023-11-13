@@ -8,6 +8,7 @@
 .object-img {
   /* We want a max of 5 objects in a row but allow for additional spacing */
   width: calc(100% / 5 - 3%);
+object-fit: contain;
   transition: 0.2s;
 }
 
